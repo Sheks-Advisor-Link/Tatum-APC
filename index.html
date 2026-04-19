@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tatum APC Prep — Clairmont Capital | Week 6 &amp; 7</title>
+<style>
+  :root{
+    --navy:#0b2545;
+    --blue:#13315c;
+    --accent:#1e6091;
+    --soft:#e8f0f7;
+    --border:#d5dee8;
+    --ok:#1b7a3a;
+    --warn:#b8860b;
+    --bad:#b00020;
+    --muted:#5c6b7a;
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --code:#f1f5f9;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+    background:var(--bg);
+    color:#1a1a1a;
+    line-height:1.6;
+  }
+  header{
+    background:linear-gradient(135deg,var(--navy),var(--accent));
+    color:white;
+    padding:32px 40px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+  }
+  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.3px}
+  header .subtitle{font-size:13px;opacity:.85;margin-top:4px}
+  .layout{display:grid;grid-template-columns:300px 1fr;max-width:1500px;margin:0 auto}
+  nav.toc{
+    position:sticky;
+    top:96px;
+    align-self:start;
+    padding:24px 16px;
+    max-height:calc(100vh - 96px);
+    overflow-y:auto;
+    border-right:1px solid var(--border);
+    background:white;
+  }
+  nav.toc h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 12px}
+  nav.toc ul{list-style:none;padding:0;margin:0 0 20px}
+  nav.toc li{margin:2px 0}
+  nav.toc a{
+    display:block;
+    padding:6px 10px;
+    color:#334155;
+    text-decoration:none;
+    font-size:13px;
+    border-radius:4px;
+    border-left:3px solid transparent;
+  }
+  nav.toc a:hover{background:var(--soft);color:var(--navy)}
+  nav.toc a.section{font-weight:600;color:var(--navy)}
+  nav.toc a.sub{padding-left:22px;font-size:12.5px;color:var(--muted)}
+  main{padding:40px 48px;max-width:100%}
+  h2{
+    font-size:22px;
+    color:var(--navy);
+    border-bottom:3px solid var(--accent);
+    padding-bottom:8px;
+    margin-top:0;
+  }
+  h3{font-size:17px;color:var(--blue);margin-top:28px}
+  h4{font-size:15px;color:var(--blue);margin-top:20px;margin-bottom:8px}
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:24px 28px;
+    margin-bottom:24px;
+    box-shadow:0 1px 3px rgba(0,0,0,.04);
+  }
+  .meta{
+    background:var(--soft);
+    border-left:4px solid var(--accent);
+    padding:12px 16px;
+    font-size:13.5px;
+    border-radius:4px;
+    margin-bottom:20px;
+  }
+  .meta div{margin:2px 0}
+  details{
+    border:1px solid var(--border);
+    border-radius:8px;
+    margin:10px 0;
+    background:#fafbfc;
+    overflow:hidden;
+  }
+  details[open]{background:white}
+  summary{
+    cursor:pointer;
+    padding:12px 16px;
+    font-weight:600;
+    color:var(--navy);
+    list-style:none;
+    user-select:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::before{
+    content:"▸";
+    color:var(--accent);
+    font-size:14px;
+    transition:transform .2s;
+  }
+  details[open] > summary::before{transform:rotate(90deg)}
+  details .inner{padding:4px 18px 16px 40px}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:14px 0;
+    font-size:13.5px;
+    background:white;
+  }
+  th,td{
+    border:1px solid var(--border);
+    padding:8px 10px;
+    text-align:left;
+    vertical-align:top;
+  }
+  th{background:var(--soft);color:var(--navy);font-weight:600}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{
+    display:inline-block;
+    padding:2px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+  }
+  .pill.agree{background:#dcfce7;color:var(--ok)}
+  .pill.disagree{background:#fee2e2;color:var(--bad)}
+  .pill.partial{background:#fef3c7;color:var(--warn)}
+  .pill.info{background:#dbeafe;color:#1e40af}
+  .pill.doc{background:#e0e7ff;color:#3730a3}
+  pre.journal{
+    background:var(--code);
+    border-left:4px solid var(--accent);
+    padding:12px 14px;
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:13px;
+    overflow-x:auto;
+    border-radius:4px;
+    margin:10px 0;
+    white-space:pre;
+  }
+  .callout{
+    border-radius:8px;
+    padding:12px 16px;
+    margin:14px 0;
+    font-size:14px;
+  }
+  .callout.warn{background:#fffbea;border-left:4px solid var(--warn)}
+  .callout.danger{background:#fef2f2;border-left:4px solid var(--bad)}
+  .callout.info{background:#eff6ff;border-left:4px solid #1e40af}
+  .callout.success{background:#f0fdf4;border-left:4px solid var(--ok)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr}
+    nav.toc{position:static;max-height:none;border-right:none;border-bottom:1px solid var(--border)}
+    main{padding:24px}
+    .two-col{grid-template-columns:1fr}
+  }
+  footer{
+    padding:24px 40px;
+    text-align:center;
+    font-size:12px;
+    color:var(--muted);
+    border-top:1px solid var(--border);
+    background:white;
+  }
+  .tag{display:inline-block;background:var(--soft);color:var(--navy);padding:2px 8px;border-radius:4px;font-size:11px;margin:2px;font-weight:600}
+  .controls{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+  }
+  .controls button{
+    background:white;
+    border:1px solid var(--border);
+    color:var(--navy);
+    padding:6px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:12.5px;
+    font-weight:600;
+  }
+  .controls button:hover{background:var(--soft);border-color:var(--accent)}
+  .controls button.active{background:var(--accent);color:white;border-color:var(--accent)}
+  @media print{
+    header,nav.toc,.controls,.tab-buttons{display:none}
+    .layout{grid-template-columns:1fr}
+    main{padding:0}
+    .card{box-shadow:none;break-inside:avoid}
+    details{break-inside:avoid}
+    details > .inner{display:block !important}
+    details > summary::before{content:""}
+    .tab-content{display:block !important}
+  }
+  ul.clean{margin:6px 0;padding-left:20px}
+  ul.clean li{margin:4px 0}
+  .ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+  .ref-box{background:var(--soft);border-radius:6px;padding:12px 14px;font-size:13px}
+  .ref-box h5{margin:0 0 6px;color:var(--navy);font-size:13px}
+  .ref-box ul{margin:0;padding-left:18px}
+  .ref-box li{margin:3px 0}
+  .note{font-size:12.5px;color:var(--muted);font-style:italic}
+  .email-box{
+    background:#fdfdfd;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:18px 22px;
+    margin:14px 0;
+  }
+  .email-header{
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
+    margin-bottom:12px;
+    font-size:13px;
+  }
+  .email-header div{margin:2px 0}
+  .email-header strong{display:inline-block;min-width:80px;color:var(--muted)}
+  .doc-label{
+    display:inline-block;
+    background:var(--navy);
+    color:white;
+    padding:4px 12px;
+    border-radius:4px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-right:10px;
+  }
+  .tab-buttons{
+    display:flex;
+    gap:4px;
+    margin-bottom:16px;
+    border-bottom:2px solid var(--border);
+    flex-wrap:wrap;
+  }
+  .tab-buttons button{
+    background:transparent;
+    border:none;
+    padding:10px 16px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+    border-bottom:3px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-buttons button.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .tab-content{display:none}
+  .tab-content.active{display:block}
+  .highlight-box{
+    background:#fff9e6;
+    border:1px solid #f3d573;
+    border-radius:6px;
+    padding:10px 14px;
+    margin:10px 0;
+    font-size:13.5px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tatum APC Prep — Clairmont Capital (Pty) Ltd</h1>
+  <div class="subtitle">APC December 2025 Pre-release &amp; Week 6–7 Foundation Phase Tasks | Full Response Document</div>
+</header>
+
+<div class="layout">
+
+  <nav class="toc">
+    <h3>Contents</h3>
+    <ul>
+      <li><a href="#overview" class="section">Overview</a></li>
+      <li><a href="#source-docs" class="section">Source Documents</a></li>
+      <li><a href="#pre-release" class="sub">Pre-release info</a></li>
+      <li><a href="#week67" class="sub">Week 6 &amp; 7 docs</a></li>
+      <li><a href="#tasks" class="sub">Tasks brief</a></li>
+      <li><a href="#task-a" class="section">Task (a) — Journal Entries</a></li>
+      <li><a href="#ta-framework" class="sub">Framework issues</a></li>
+      <li><a href="#ta-je-processed" class="sub">Already processed</a></li>
+      <li><a href="#ta-opt1-je1" class="sub">Option 1 — JE1</a></li>
+      <li><a href="#ta-opt1-je2" class="sub">Option 1 — JE2</a></li>
+      <li><a href="#ta-opt2-je3" class="sub">Option 2 — JE3</a></li>
+      <li><a href="#ta-opt2-je4" class="sub">Option 2 — JE4</a></li>
+      <li><a href="#ta-deftax" class="sub">Deferred tax</a></li>
+      <li><a href="#ta-other" class="sub">Other board matters</a></li>
+      <li><a href="#task-b" class="section">Task (b) — Gauteng Plan</a></li>
+      <li><a href="#tb-assessment" class="sub">Pillar-by-pillar assessment</a></li>
+      <li><a href="#tb-thresholds" class="sub">Procurement thresholds</a></li>
+      <li><a href="#tb-prereq" class="sub">Prerequisites</a></li>
+      <li><a href="#tb-recommend" class="sub">Recommendations</a></li>
+      <li><a href="#task-c" class="section">Task (c) — Strategic Options</a></li>
+      <li><a href="#tc-opt1" class="sub">Option 1 — Silver Spoons JV</a></li>
+      <li><a href="#tc-opt2" class="sub">Option 2 — Corporate Contracting</a></li>
+      <li><a href="#tc-info" class="sub">Additional information</a></li>
+      <li><a href="#tc-summary" class="sub">Summary</a></li>
+      <li><a href="#refs" class="section">Key SA References</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <div class="controls">
+      <button onclick="toggleAll(true)">Expand all</button>
+      <button onclick="toggleAll(false)">Collapse all</button>
+      <button onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <section id="overview" class="card">
+      <div class="meta">
+        <div><strong>Candidate:</strong> Cameron Dean-Shekleton</div>
+        <div><strong>Scenario:</strong> Clairmont Capital (Pty) Ltd — APC December 2025</div>
+        <div><strong>Role:</strong> Financial Analyst responding to Zeriah January (Co-CEO)</div>
+        <div><strong>Date:</strong> 3 December 2025</div>
+        <div><strong>Scope:</strong> South African Acts, Regulations and IFRS Accounting Standards</div>
+      </div>
+      <p>This document contains the full source material (APC December 2025 pre-release information and the Week 6–7 task documents) as well as a comprehensive answer to each of the three tasks set, with calculations, alternative treatments and all relevant SA legislative references.</p>
+      <div class="two-col">
+        <div class="callout info"><strong>Task (a):</strong> Review of Bradger &amp; Partners' draft journal entries for the proposed amendments to the performance incentive scheme.</div>
+        <div class="callout info"><strong>Task (b):</strong> Advice on Villa Flawty's plan to target Gauteng provincial government departments.</div>
+      </div>
+      <div class="callout info"><strong>Task (c):</strong> Advice on Villa Flawty's two strategic options (Silver Spoons JV vs internal corporate contracting).</div>
+    </section>
+
+    <!-- ===================== SOURCE DOCUMENTS ===================== -->
+    <section id="source-docs" class="card">
+      <h2>Source Documents</h2>
+      <p>Full extracts of the source material from both the pre-release information and the Week 6–7 task documents — so the question and answer live in the same file.</p>
+
+      <div class="tab-buttons">
+        <button class="active" onclick="showTab(event,'tab-pre')">📄 Pre-release info</button>
+        <button onclick="showTab(event,'tab-week')">📄 Week 6 &amp; 7 docs</button>
+        <button onclick="showTab(event,'tab-tasks')">🎯 Tasks brief</button>
+      </div>
+
+      <!-- PRE-RELEASE TAB -->
+      <div id="tab-pre" class="tab-content active">
+        <h3 id="pre-release">APC December 2025 Pre-released information — Clairmont Capital (Pty) Ltd</h3>
+
+        <details open>
+          <summary><span class="pill doc">Doc 1</span> Email — Welcome (Zeriah January → Financial Analyst, 28 Nov 2025)</summary>
+          <div class="inner">
+            <p>Clairmont is an investment entity that deploys growth capital to South African private companies. The financial analyst will assist with AFS preparation advice, tax queries, external audit preparation, assessment of growth opportunities and evaluation of potential investments.</p>
+            <p><strong>Attached brochure:</strong> Clairmont founded 2020 as a majority-black-owned investment holding company focused on logistics, hospitality and renewable energy. Invests in companies with EV of R50m–R200m, targeting 17,5% pre-tax return on capital compounded annually. Minority shareholder (20–49%). Two share classes: A-Ordinary (1 vote, dividends) and B-Ordinary (10 votes, no dividends, held by JZAH Investments — jointly controlled by Zeriah and Ayola).</p>
+            <p><strong>Leaders:</strong> Zeriah January (co-CEO, electrical engineer); Ayola Hlekani (co-CEO, CA(SA) 2017); Dr Anlu Reekie (chair, independent non-exec); Basil Oliphant (non-exec, REIFSA); Lindiwe Smith (non-exec, ex-logistics CEO).</p>
+            <p><strong>Investees:</strong></p>
+            <ul class="clean">
+              <li><strong>Coursier</strong> — on-demand delivery (ODD) service.</li>
+              <li><strong>Villa Flawty</strong> — 32-room afro-chic luxury hotel in Sandton.</li>
+              <li><strong>Rechauffer</strong> — 28 retail stores selling frozen meals in GP, WC and KZN.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 2</span> Email — Clairmont shares &amp; performance incentive scheme</summary>
+          <div class="inner">
+            <h4>Shareholders</h4>
+            <table>
+              <thead><tr><th>A-Ordinary shareholders</th><th class="num">Shares</th><th class="num">Subscription (R)</th></tr></thead>
+              <tbody>
+                <tr><td>JZAH Investments (Pty) Ltd</td><td class="num">15 000 000</td><td class="num">15 000 000</td></tr>
+                <tr><td>REIFSA</td><td class="num">32 500 000</td><td class="num">35 000 000</td></tr>
+                <tr><td>Sithole Family Office</td><td class="num">13 333 333</td><td class="num">15 000 000</td></tr>
+                <tr><td>Dlamini Family Office</td><td class="num">8 333 333</td><td class="num">10 000 000</td></tr>
+                <tr><td>Lindiwe Smith</td><td class="num">4 166 667</td><td class="num">5 000 000</td></tr>
+                <tr style="background:var(--soft);font-weight:bold"><td>Total A-Ordinary</td><td class="num">73 333 333</td><td class="num">80 000 000</td></tr>
+                <tr><td><strong>B-Ordinary</strong> — JZAH Investments</td><td class="num">7 500 000</td><td class="num">75 000</td></tr>
+              </tbody>
+            </table>
+            <p>FY2021 issue at R1,00/share; FY2022 issue at R1,20/share.</p>
+
+            <h4>Performance incentive scheme</h4>
+            <ul class="clean">
+              <li>Zeriah and Ayola do not receive salaries.</li>
+              <li>First scheme: 1 November 2020 – 31 October 2023. Target: CAGR in NAV per A-Ordinary share &gt; 15%. Actual CAGR = 4,8% — target not met, no shares issued.</li>
+              <li>Renewed scheme: 1 November 2023 – 31 October 2026. Same terms — 2,5m A-Ordinary shares each if &gt;15% CAGR achieved.</li>
+              <li>Both CEOs must remain employed throughout the vesting period.</li>
+              <li>Management expects NAV per A-Ordinary share ≈ R1,83 at 31 October 2025.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 3</span> Email — Clairmont AFS and management accounts (Ayola Hlekani)</summary>
+          <div class="inner">
+            <p>Clairmont's AFS prepared per IFRS. Investments classified and measured at <strong>fair value through profit or loss</strong>. External auditors: Auditco &amp; Associates. Planning meeting scheduled with Ayola for FY2025 audit.</p>
+
+            <h4>Extracts — SoFP</h4>
+            <table>
+              <thead><tr><th>R'000</th><th class="num">FY2024 Actual</th><th class="num">FY2025 Draft</th></tr></thead>
+              <tbody>
+                <tr><td>Non-current assets</td><td class="num">90 321</td><td class="num">113 624</td></tr>
+                <tr><td>&nbsp;&nbsp;Investments at FVTPL</td><td class="num">75 263</td><td class="num">109 125</td></tr>
+                <tr><td>&nbsp;&nbsp;Loan to Rechauffer</td><td class="num">15 000</td><td class="num">4 449</td></tr>
+                <tr><td>Cash and equivalents</td><td class="num">22 380</td><td class="num">33 883</td></tr>
+                <tr style="font-weight:bold"><td>Total assets</td><td class="num">112 701</td><td class="num">147 507</td></tr>
+                <tr><td>Stated capital</td><td class="num">80 075</td><td class="num">80 075</td></tr>
+                <tr><td>Retained earnings</td><td class="num">24 797</td><td class="num">50 387</td></tr>
+                <tr><td>Share-based payment reserve</td><td class="num">1 900</td><td class="num">3 800</td></tr>
+                <tr><td>Deferred taxation</td><td class="num">5 897</td><td class="num">13 212</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Fair value of investees</h4>
+            <table>
+              <thead><tr><th>Investment</th><th>Method</th><th class="num">FY2024 FV (R)</th><th class="num">FY2025 FV (R)</th></tr></thead>
+              <tbody>
+                <tr><td>Coursier (25%)</td><td>DCF — WACC 17%, g 5%</td><td class="num">40 421 000</td><td class="num">47 031 000</td></tr>
+                <tr><td>Villa Flawty (35%)</td><td>EBITDA multiple (6,0 → 5,0)</td><td class="num">24 842 000</td><td class="num">22 315 000</td></tr>
+                <tr><td>Rechauffer (20%)</td><td>DCF — WACC 18%, g 5%</td><td class="num">10 000 000</td><td class="num">39 779 000</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Extracts — SoCI</h4>
+            <table>
+              <thead><tr><th>R'000</th><th class="num">FY2024</th><th class="num">FY2025</th></tr></thead>
+              <tbody>
+                <tr><td>Fair value adjustments</td><td class="num">27 303</td><td class="num">33 862</td></tr>
+                <tr><td>Share-based payment expense</td><td class="num">(1 900)</td><td class="num">(1 900)</td></tr>
+                <tr><td>Profit before tax</td><td class="num">26 633</td><td class="num">32 904</td></tr>
+                <tr><td>Deferred tax</td><td class="num">(5 897)</td><td class="num">(7 315)</td></tr>
+                <tr style="font-weight:bold"><td>Profit for the year</td><td class="num">20 736</td><td class="num">25 589</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 4</span> Email — Rechauffer strategy to sell in partner retail stores (Ayola Hlekani)</summary>
+          <div class="inner">
+            <p>Rechauffer — started 2021, now 28 retail stores across GP, WC and KZN, central kitchen in Gauteng. Proposed strategy: partner with an existing supermarket chain to sell products in branded Rechauffer freezers within the supermarket's stores. Guidance required on accounting for this arrangement.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 5</span> Email — Villa Flawty (Zeriah January)</summary>
+          <div class="inner">
+            <p>Clairmont's investment in Villa Flawty declined in value during FY2025, affecting the incentive scheme target. Villa Flawty has been approached by Silver Spoons (a successful Cape Town restaurant group) regarding potential collaboration.</p>
+            <h4>Villa Flawty selected financial information</h4>
+            <table>
+              <thead><tr><th>Year ended 30 September</th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+              <tbody>
+                <tr><td>Number of rooms</td><td class="num">32</td><td class="num">32</td></tr>
+                <tr><td>Available bed nights</td><td class="num">11 680</td><td class="num">11 680</td></tr>
+                <tr><td>Avg accommodation revenue per room night</td><td class="num">R2 750</td><td class="num">R2 950</td></tr>
+                <tr><td>Occupancy</td><td class="num">68,0%</td><td class="num">70,0%</td></tr>
+              </tbody>
+            </table>
+            <h4>F&amp;B operations (R'000)</h4>
+            <table>
+              <thead><tr><th></th><th class="num">2024</th><th class="num">2025</th></tr></thead>
+              <tbody>
+                <tr><td>F&amp;B revenue</td><td class="num">6 760</td><td class="num">7 380</td></tr>
+                <tr><td>Cost of sales</td><td class="num">(2 129)</td><td class="num">(2 368)</td></tr>
+                <tr><td>F&amp;B gross profit</td><td class="num">4 631</td><td class="num">5 012</td></tr>
+                <tr><td>Employee costs</td><td class="num">(1 683)</td><td class="num">(1 801)</td></tr>
+                <tr><td>Other operating expenses</td><td class="num">(728)</td><td class="num">(764)</td></tr>
+                <tr><td>Allocated overheads</td><td class="num">(628)</td><td class="num">(677)</td></tr>
+                <tr style="font-weight:bold"><td>Divisional EBITDA</td><td class="num">1 592</td><td class="num">1 770</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 6</span> Email — Villa Flawty's plan for expanding its customer base (Zeriah January)</summary>
+          <div class="inner">
+            <p>VF board agreed at strategy session to target Gauteng provincial government departments — preferred venue for high-profile meetings, conferences and accommodating visiting dignitaries. Relevant documents flagged:</p>
+            <ul class="clean">
+              <li>Government of the Republic of South Africa general procurement guidelines</li>
+              <li>National Treasury PFMA SCM Instruction No. 02 of 2021/2022 — threshold values</li>
+            </ul>
+            <p><strong>Results from generative AI search (attachment):</strong></p>
+            <ol>
+              <li><strong>Registration is mandatory</strong> — CSD registration; CIPC.</li>
+              <li><strong>Compliance is critical</strong> — tax clearance, B-BBEE, registered business bank account.</li>
+              <li><strong>Procurement processes</strong> — RFQs from at least 3 CSD suppliers; tenders for larger purchases.</li>
+              <li><strong>Evaluation criteria</strong> — PPPFA: price and B-BBEE; 80/20 under R50m, 90/10 above R50m.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 7</span> Email — New investment opportunity: Bruum Finance (Ayola Hlekani)</summary>
+          <div class="inner">
+            <p>Coursier approached by Bruum Finance directors about Coursier acquiring a shareholding. Bruum — financier of motorcycles for ODD drivers. Rent-to-own structure: 2-year rental, R1 250 deposit, fixed monthly rental (does not cover insurance/servicing), end-of-term purchase option at ±10% of original cost. Motorcycles depreciated straight-line over 4 years. Assistance needed with acquisition analysis and tax matters.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc 8</span> Email — Coursier overview (Zeriah January)</summary>
+          <div class="inner">
+            <p>Coursier is an ODD platform connecting customers to suppliers/merchants. R32 per order delivery fee (distance &lt;12km). Drivers are not employees. Merchants paid weekly. Asset-light, positive free cash flow, no debt.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- WEEK 6 & 7 TAB -->
+      <div id="tab-week" class="tab-content">
+        <h3 id="week67">Week 6 &amp; 7 Foundation Phase Documents</h3>
+
+        <details open>
+          <summary><span class="pill doc">Doc A</span> Email — Performance incentive scheme (Zeriah January, 3 Dec 2025)</summary>
+          <div class="inner">
+            <div class="email-box">
+              <div class="email-header">
+                <div><strong>From:</strong> Zeriah January</div>
+                <div><strong>To:</strong> Financial Analyst</div>
+                <div><strong>Date:</strong> 3 December 2025</div>
+                <div><strong>Regarding:</strong> Performance incentive scheme</div>
+              </div>
+              <p>Board feels original terms unfair to Ayola and Zeriah (no salary since inception). Two proposed amendments:</p>
+              <p><strong>Option 1:</strong> Replace existing scheme effective 31 October 2025. Shares increased to 4,5m each (+2m). Required CAGR reduces to 12,8%. Aligned with targeted 17,5% × 73% after-tax return on capital. Both CEOs receive 4,5m A-Ordinary shares each at 31 October 2026 if still employed and CAGR for 1 Nov 2023 – 31 Oct 2026 exceeds 12,8%.</p>
+              <p><strong>Option 2:</strong> Cancel entire equity scheme. Ayola and Zeriah receive R3 million each in cash immediately (in lieu of past services rendered).</p>
+              <p>Bradger &amp; Partners have drafted journal entries for FY2025 (see below). Task: review, comment on accuracy, agree/disagree with reasons, provide corrections if entries are incorrect. Consider FY2025 and FY2026. <strong>Also: no proposed deferred tax entries — is this correct?</strong></p>
+            </div>
+
+            <h4>Fair values supplied</h4>
+            <table>
+              <thead><tr><th>Detail</th><th class="num">R</th></tr></thead>
+              <tbody>
+                <tr><td>FV existing share option at 1 November 2023 (grant)</td><td class="num">1,14</td></tr>
+                <tr><td>FV existing share option at 31 October 2025 (mod date)</td><td class="num">1,82</td></tr>
+                <tr><td>FV proposed share option at 31 October 2025</td><td class="num">2,00</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Bradger &amp; Partners draft journals</h4>
+            <table>
+              <thead><tr><th>Entry</th><th>FY2025 Dr</th><th>FY2025 Cr</th><th>FY2026 Dr</th><th>FY2026 Cr</th><th>Workings / Note</th></tr></thead>
+              <tbody>
+                <tr style="background:var(--soft)"><td colspan="6"><em>Already processed</em></td></tr>
+                <tr><td>SBP expense / SBP reserve</td><td class="num">1 900 000</td><td class="num">1 900 000</td><td>–</td><td>–</td><td>2,5m × 2 × R1,14 × 12/36</td></tr>
+                <tr style="background:var(--soft)"><td colspan="6"><em>Option 1 additional</em></td></tr>
+                <tr><td>JE1 — SBP expense / reserve</td><td class="num">1 900 000</td><td class="num">1 900 000</td><td>–</td><td>–</td><td>Acceleration of unrecognised</td></tr>
+                <tr><td>JE2 — SBP expense / reserve</td><td class="num">9 000 000</td><td class="num">9 000 000</td><td class="num">9 000 000</td><td class="num">9 000 000</td><td>4,5m × 2 × R2,00 × 12/24</td></tr>
+                <tr style="background:var(--soft)"><td colspan="6"><em>Option 2 additional</em></td></tr>
+                <tr><td>JE3 — SBP expense / reserve</td><td class="num">1 900 000</td><td class="num">1 900 000</td><td>–</td><td>–</td><td>Acceleration</td></tr>
+                <tr><td>JE4 — SBP reserve Dr 5,7m / SBP expense Dr 0,3m / Remuneration payable Cr 6m</td><td colspan="4">see note</td><td>R6m paid in FY2026; excess expensed</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc B</span> Email — Villa Flawty growth plan (Gauteng government)</summary>
+          <div class="inner">
+            <div class="email-box">
+              <div class="email-header">
+                <div><strong>From:</strong> Zeriah January</div>
+                <div><strong>Sent:</strong> 3 December 2025</div>
+                <div><strong>To:</strong> Financial Analyst</div>
+                <div><strong>Subject:</strong> Villa Flawty — Growth plan</div>
+              </div>
+              <p>Board strategy agreed to target Gauteng provincial government departments. VF Sales and Marketing manager has drafted a project plan. Please advise whether the board should support it in its current form, with reference to the 5 general procurement pillars:</p>
+              <ol>
+                <li>Value for Money</li>
+                <li>Open and Effective Competition</li>
+                <li>Ethics and Fair Dealing</li>
+                <li>Accountability and Reporting</li>
+                <li>Equity</li>
+              </ol>
+              <p>Also identify any risks to Villa Flawty if it proceeds with the plan as-is.</p>
+            </div>
+
+            <h4>Project plan — Gauteng provincial government departments</h4>
+            <p><strong>Objective:</strong> Position Villa Flawty as preferred provider of hospitality services (accommodation, conferences, catering) to Gauteng provincial government.</p>
+            <ol>
+              <li><strong>Strengthen Pre-Tender Relationships</strong> — curated site visits and experiential showcases for decision-makers; event-planning guidance pre-tender.</li>
+              <li><strong>Executive Level Service Offering Differentiation</strong> — complimentary suite upgrades when available; priority concierge for senior departmental representatives.</li>
+              <li><strong>Flexible Scope Management</strong> — manage event scope changes through direct stakeholder engagement without formal written amendments.</li>
+              <li><strong>Contractual Costs Determination</strong> — standardised luxury government hospitality package with consolidated pricing (accommodation + conferencing + catering).</li>
+              <li><strong>Optimisation of Working Capital</strong> — standardised extended payment terms for subcontractors (including SMMEs).</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
+          <summary><span class="pill doc">Doc C</span> Email — Villa Flawty strategic direction</summary>
+          <div class="inner">
+            <div class="email-box">
+              <div class="email-header">
+                <div><strong>From:</strong> Zeriah January</div>
+                <div><strong>Sent:</strong> 3 December 2025</div>
+                <div><strong>To:</strong> Financial Analyst</div>
+                <div><strong>Cc:</strong> Ayola Hlekani</div>
+                <div><strong>Subject:</strong> Villa Flawty — Strategic direction</div>
+              </div>
+              <p>Two potential strategic options identified. Task — respond to Zeriah only with:</p>
+              <ol>
+                <li>Key practical, operational and commercial considerations associated with each option.</li>
+                <li>Key additional information required to assess whether each option is likely to deliver sustainable improvements in Villa Flawty's financial performance.</li>
+              </ol>
+            </div>
+
+            <h4>Option 1 — Strategic Partnership with Silver Spoons</h4>
+            <p>Joint venture with Silver Spoons (Cape Town restaurant group). Silver Spoons would:</p>
+            <ul class="clean">
+              <li>Assume full responsibility for Villa Flawty's F&amp;B operations (menu, pricing, staffing, positioning).</li>
+              <li>Operate the restaurant under the Silver Spoons brand, marketed independently of Villa Flawty.</li>
+              <li>Use Villa Flawty's kitchen, dining areas and equipment at no charge.</li>
+              <li>Appoint its own head chef (Villa Flawty retrenches current head chef). Other staff retained.</li>
+            </ul>
+            <p>All F&amp;B revenues and costs (including conference catering) recorded within the JV — operating profits shared equally. Villa Flawty provides finance and admin support. A <strong>facilitation fee</strong> (% of revenue) is payable to a <strong>related party</strong> involved in structuring the deal. No formal projections prepared.</p>
+
+            <h4>Option 2 — Internal Corporate Contracting Strategy</h4>
+            <ul class="clean">
+              <li>Preferred supplier agreements with selected corporates — discounted room rates for expected booking volumes.</li>
+              <li>Bundled accommodation and conferencing offerings.</li>
+              <li>Dedicated account managers for key-relationship management.</li>
+              <li>Incentives — upgrades, flexible booking terms, preferential access.</li>
+              <li>Management expects improved weekday occupancy and conference utilisation, though requires below-standard pricing and successful acquisition/retention of corporate clients.</li>
+              <li>No formal projections prepared.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+
+      <!-- TASKS TAB -->
+      <div id="tab-tasks" class="tab-content">
+        <h3 id="tasks">Tasks brief</h3>
+        <table>
+          <thead><tr><th style="width:40px">#</th><th>Task</th><th style="width:120px">Refer to doc</th></tr></thead>
+          <tbody>
+            <tr><td>(a)</td><td>Respond to the request from Zeriah January relating to the proposed journal entries.</td><td>A</td></tr>
+            <tr><td>(b)</td><td>Respond to Zeriah January's email regarding Villa Flawty's plan to target the Gauteng government departments.</td><td>B</td></tr>
+            <tr><td>(c)</td><td>Respond to Zeriah January's email regarding Villa Flawty's strategic options.</td><td>C</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== TASK A ===================== -->
+    <section id="task-a" class="card">
+      <h2>Task (a) — Review of Draft Journal Entries (Document A)</h2>
+
+      <h3 id="ta-framework">1. Framework and preliminary classification</h3>
+      <p>The performance incentive scheme is a <strong>share-based payment</strong> governed by <strong>IFRS 2</strong>, with deferred tax consequences per <strong>IAS 12</strong>. Two conceptual matters must be resolved before reviewing each journal.</p>
+
+      <h4>(i) Nature of the vesting condition (CAGR in NAV per A-Ordinary share)</h4>
+      <table>
+        <thead><tr><th>View</th><th>Treatment</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>A — Non-market performance condition</strong><br/><span class="note">Majority view for unlisted entities — NAV is an internally measured metric not a traded market price (IFRS 2 IG, Example 2).</span></td>
+            <td>Condition affects <strong>vesting estimate</strong> (number of shares expected to vest), <strong>not</strong> grant-date fair value. Expense reversed if target not met.</td>
+            <td>Bradger's implicit approach — consistent with straight-line recognition in FY2024/FY2025.</td>
+          </tr>
+          <tr>
+            <td><strong>B — Market condition</strong><br/><span class="note">NAV per share is arguably the "value of the entity's equity instruments" (IFRS 2 Appendix A definition).</span></td>
+            <td>Condition factored into <strong>grant-date FV</strong>. Expense recognised regardless of whether target is met (provided service condition met).</td>
+            <td>Less commonly applied — fair value is already low (R1,14) to reflect probability of meeting target.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">View A is applied below (consistent with Bradger's own approach and SAICA exam convention), flagged for discussion with Auditco.</p>
+
+      <h4>(ii) Classification of Options 1 and 2</h4>
+      <ul class="clean">
+        <li><strong>Option 1 = Modification</strong> (not cancellation + new grant). IFRS 2.B43 — if a cancellation is accompanied by a replacement award identified as such, the combined transaction is accounted for as a modification. Bradger has incorrectly treated Option 1 as cancellation + new grant, materially distorting FY2025 and FY2026.</li>
+        <li><strong>Option 2 = Cancellation with cash settlement</strong> (IFRS 2.28) — correctly identified by Bradger.</li>
+      </ul>
+
+      <h3>2. Review of each draft journal</h3>
+
+      <details id="ta-je-processed" open>
+        <summary><span class="pill agree">Agree</span> "Already processed" entry — FY2025: Dr SBP expense / Cr SBP reserve R1 900 000</summary>
+        <div class="inner">
+          <p><strong>Correct.</strong> Straight-line allocation of original grant:</p>
+          <pre class="journal">2,5m shares × 2 CEOs × R1,14 × 12/36 = R1 900 000</pre>
+          <p>Vesting period 1 November 2023 – 31 October 2026 (36 months). By 31 October 2025, 24/36 is recognised — cumulative reserve R3 800 000 ✓ (agrees to SoFP: R3 800k).</p>
+        </div>
+      </details>
+
+      <details id="ta-opt1-je1">
+        <summary><span class="pill disagree">Disagree</span> Option 1 — JE1 (FY2025): Dr SBP expense / Cr SBP reserve R1 900 000 (acceleration)</summary>
+        <div class="inner">
+          <p>The "acceleration" of the remaining R1,9m is <strong>incorrect</strong> because Option 1 is a <strong>modification, not a cancellation</strong> (IFRS 2.27 and B43). Under a modification:</p>
+          <div class="callout info"><em>"The entity shall recognise, as a minimum, the services received measured at the grant-date fair value of the equity instruments granted"</em> — IFRS 2.27</div>
+          <p>The original R1,14 per share continues to be expensed over the <strong>original 36-month vesting period</strong>. No acceleration applies.</p>
+          <h4>Correcting journal (FY2025)</h4>
+          <pre class="journal">Dr  SBP reserve (Eq)           R1 900 000
+  Cr  SBP expense (P/L)                     R1 900 000</pre>
+        </div>
+      </details>
+
+      <details id="ta-opt1-je2">
+        <summary><span class="pill disagree">Disagree</span> Option 1 — JE2: Dr SBP expense / Cr SBP reserve R9 000 000 (FY2025 and FY2026)</summary>
+        <div class="inner">
+          <p>Bradger has applied the modified FV (R2,00) to all 4,5m shares and spread them over 24 months — wrong on three counts:</p>
+          <ol>
+            <li>The <strong>original 2,5m shares continue at the original grant-date FV of R1,14</strong>, not R2,00.</li>
+            <li>The <strong>incremental fair value</strong> on the original 2,5m shares = FV of modified award at mod date − FV of original at mod date = <strong>R2,00 − R1,82 = R0,18 per share</strong>, recognised over the <em>remaining</em> vesting period (12 months).</li>
+            <li>The <strong>additional 2m shares</strong> are recognised over 12 months (mod date → vest date 31 October 2026), not 24 months. Expense = 2m × R2,00 = R4 000 000 per CEO.</li>
+          </ol>
+
+          <h4>Correct total expense (per IFRS 2.27 and B43)</h4>
+          <table>
+            <thead><tr><th>Component</th><th class="num">Per CEO (R)</th><th class="num">Both CEOs (R)</th><th>Period</th></tr></thead>
+            <tbody>
+              <tr><td>Continuing original (R1,14 × 2,5m × 12/36)</td><td class="num">950 000</td><td class="num">1 900 000</td><td>FY2026</td></tr>
+              <tr><td>Incremental FV on existing 2,5m (R0,18 × 2,5m)</td><td class="num">450 000</td><td class="num">900 000</td><td>FY2026</td></tr>
+              <tr><td>New 2m shares at R2,00</td><td class="num">4 000 000</td><td class="num">8 000 000</td><td>FY2026</td></tr>
+              <tr style="background:var(--soft);font-weight:bold"><td>Total FY2026 expense</td><td class="num">5 400 000</td><td class="num">10 800 000</td><td></td></tr>
+              <tr><td>Total FY2025 expense (original only — already processed)</td><td class="num">950 000</td><td class="num">1 900 000</td><td>FY2025</td></tr>
+            </tbody>
+          </table>
+
+          <h4>Correcting FY2025</h4>
+          <p>Reverse Bradger's JE2 of R9m (no additional FY2025 entry needed beyond the R1,9m already processed).</p>
+
+          <h4>FY2026 correct journal</h4>
+          <pre class="journal">Dr  SBP expense               R10 800 000
+  Cr  SBP reserve (Eq)                    R10 800 000</pre>
+        </div>
+      </details>
+
+      <details id="ta-opt2-je3">
+        <summary><span class="pill partial">Agree in isolation — but incomplete</span> Option 2 — JE3 (FY2025): Dr SBP expense / Cr SBP reserve R1 900 000</summary>
+        <div class="inner">
+          <p>Per IFRS 2.28(a) and (b), on cancellation the entity shall:</p>
+          <ul class="clean">
+            <li>(a) account for the cancellation as an <strong>acceleration of vesting</strong>; and</li>
+            <li>(b) recognise immediately the <strong>amount that would otherwise have been recognised over the remainder of the vesting period</strong>.</li>
+          </ul>
+          <p>Bradger has only recognised the normal FY2025 straight-line charge (R1,9m) — the acceleration of the remaining FY2026 portion is missing.</p>
+          <h4>Additional entry required</h4>
+          <pre class="journal">Dr  SBP expense (acceleration)  R1 900 000
+  Cr  SBP reserve (Eq)                     R1 900 000</pre>
+          <p>After this, SBP reserve = R1,9m × 3 = R5,7m (fully recognised), which is what Bradger's workings implicitly assume inside JE4 — it is cleaner to split the acceleration as a separate journal.</p>
+        </div>
+      </details>
+
+      <details id="ta-opt2-je4">
+        <summary><span class="pill disagree">Disagree</span> Option 2 — JE4: Repurchase / cash settlement (FY2025 &amp; FY2026)</summary>
+        <div class="inner">
+          <p>Bradger has expensed R300 000 as an "excess". This is wrong. Per IFRS 2.28(c):</p>
+          <div class="callout info"><em>"Any payment made to the employee on the cancellation … shall be accounted for as the repurchase of an equity interest, i.e. as a deduction from equity, <strong>except to the extent that the payment exceeds the fair value of the equity instruments granted, measured at the repurchase date</strong>. Any such excess shall be recognised as an expense."</em></div>
+          <p>The relevant comparison is <strong>payment vs fair value at repurchase date</strong>, not payment vs SBP reserve balance.</p>
+          <h4>Calculation</h4>
+          <ul class="clean">
+            <li>Payment: R3m × 2 = <strong>R6 000 000</strong></li>
+            <li>FV at repurchase date: 2,5m × 2 × R1,82 = <strong>R9 100 000</strong></li>
+            <li>Payment &lt; FV → <strong>no excess → no expense</strong>. The full R6m is a deduction from equity.</li>
+          </ul>
+
+          <h4>Corrected JE4 — FY2025 accrual</h4>
+          <pre class="journal">Dr  SBP reserve (Eq)           R5 700 000
+Dr  Retained earnings          R   300 000     ← NOT an expense
+  Cr  Remuneration payable (L)             R6 000 000</pre>
+
+          <h4>FY2026 settlement (agree with Bradger)</h4>
+          <pre class="journal">Dr  Remuneration payable       R6 000 000
+  Cr  Bank                                 R6 000 000</pre>
+          <p>The R300 000 is drawn from distributable reserves because the full R6m is a repurchase of an equity interest.</p>
+        </div>
+      </details>
+
+      <h3 id="ta-deftax">3. Deferred tax — response to your specific query</h3>
+      <div class="callout danger"><strong>Bradger is incorrect in omitting deferred tax.</strong> Deferred tax consequences arise for both options.</div>
+
+      <h4>Option 1 (equity-settled modification)</h4>
+      <p>Under <strong>section 11(lA) of the Income Tax Act 58 of 1962 ("ITA")</strong>, the employer may deduct the <strong>market value of the shares</strong> issued to employees under a qualifying scheme, but only <strong>when the shares accrue to the employee</strong> (i.e. on vesting). The IFRS 2 expense is therefore not currently deductible.</p>
+      <p>Per <strong>IAS 12.68A–68C</strong>:</p>
+      <ul class="clean">
+        <li>Tax base of services received to date = nil.</li>
+        <li>Estimated future tax deduction based on share price at reporting date (NAV ≈ R1,83 × 9m shares = R16 470 000).</li>
+        <li>DTA = min(cumulative expense, estimated deduction × proportion vested) × 27% — recognised in <strong>P/L</strong>.</li>
+        <li>Excess of estimated deduction over cumulative expense → DTA recognised in <strong>equity</strong> (IAS 12.68C).</li>
+      </ul>
+
+      <h4>Option 2 (cash-settled on cancellation)</h4>
+      <ul class="clean">
+        <li>R6m is cash remuneration, deductible in the year of payment (<strong>FY2026</strong>) under <strong>s11(a)</strong> and <strong>s7B</strong> of the ITA (variable remuneration deemed to accrue/be paid on actual payment).</li>
+        <li>In <strong>FY2025</strong>: R6m liability recognised for accounting; tax base = nil → DTA = R6m × 27% = <strong>R1 620 000</strong>.</li>
+      </ul>
+
+      <h4>Illustrative journal — Option 2, FY2025</h4>
+      <pre class="journal">Dr  Deferred tax asset (SFP)    R1 620 000
+  Cr  Deferred tax (P/L)                   R1 620 000</pre>
+
+      <div class="callout warn"><strong>Also consider:</strong> Employees' Tax (PAYE) under the <strong>Fourth Schedule</strong> to the ITA — the R6m cash payment is remuneration and PAYE must be withheld by Clairmont on payment.</div>
+
+      <h3 id="ta-other">4. Other matters for the Board</h3>
+      <ul class="clean">
+        <li><strong>Companies Act 71 of 2008, s41:</strong> Issue of shares under Option 1 to directors requires a <strong>special resolution of shareholders</strong> (subject to limited exemptions). 9m new A-Ordinary shares ≈ 12,3% of the 73,33m base — below the 30% threshold, but the <em>directors</em> issue trigger still applies.</li>
+        <li><strong>BEE consequences:</strong> JZAH's voting control via B-Ordinary shares (10 votes each) is preserved (A-share issue dilutes dividend but not voting).</li>
+        <li><strong>King IV:</strong> Conflicts of interest — Zeriah and Ayola are beneficiaries and directors; independent non-executive directors (Dr Reekie, Basil Oliphant, Lindiwe Smith) should approve.</li>
+      </ul>
+    </section>
+
+    <!-- ===================== TASK B ===================== -->
+    <section id="task-b" class="card">
+      <h2>Task (b) — Villa Flawty's Plan to Target Gauteng Government Departments (Document B)</h2>
+
+      <div class="callout danger"><strong>Recommendation:</strong> The Board should <strong>NOT</strong> support the plan in its current form. Multiple actions conflict with the five procurement pillars and South African public-sector legislation, exposing Villa Flawty (and the CEOs as directors) to prosecution, blacklisting and reputational damage.</div>
+
+      <h3 id="tb-assessment">Assessment against the 5 procurement pillars and SA legislation</h3>
+
+      <details open>
+        <summary><span class="pill disagree">High risk</span> Action 1 — Pre-tender site visits, experiential showcases and pre-tender event-planning guidance</summary>
+        <div class="inner">
+          <p><strong>Pillars breached:</strong> Open &amp; Effective Competition; Ethics &amp; Fair Dealing.</p>
+          <p><strong>Legislative breaches:</strong></p>
+          <ul class="clean">
+            <li>PFMA s51/s57 (fiduciary duties of officials)</li>
+            <li>Treasury Regulation 16A; s217 of the Constitution (fair, equitable, transparent, competitive and cost-effective)</li>
+            <li>PRECCA, Act 12 of 2004, s3 and s4 (general &amp; official corruption)</li>
+            <li>Public Service Regulations, 2016 — gift registers and declarations</li>
+          </ul>
+          <p><strong>Risk:</strong> Disqualification from bids; criminal prosecution; listing on the National Treasury's <em>Register for Tender Defaulters</em> (PRECCA s28); reputational harm.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill disagree">High risk</span> Action 2 — Complimentary suite upgrades and priority concierge for senior departmental representatives</summary>
+        <div class="inner">
+          <p><strong>Pillars breached:</strong> Ethics &amp; Fair Dealing; Equity.</p>
+          <p><strong>Legislative breaches:</strong></p>
+          <ul class="clean">
+            <li>PRECCA s3, s4, s12, s13 — offering "gratification" to public officers is an offence.</li>
+            <li>Public Administration Management Act; Code of Conduct for Public Servants (DPSA) — officials may not accept gifts &gt; R350 without disclosure.</li>
+          </ul>
+          <p><strong>Risk:</strong> Criminal liability for both VF and the recipient officials. Directors of VF are personally liable under PRECCA s34 (duty to report corrupt activity).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill disagree">High risk</span> Action 3 — Managing scope changes through "direct stakeholder engagement" without written amendments</summary>
+        <div class="inner">
+          <p><strong>Pillar breached:</strong> Accountability &amp; Reporting.</p>
+          <p><strong>Legislative breaches:</strong></p>
+          <ul class="clean">
+            <li>PFMA s38(1)(a)(iii) requires proper record-keeping.</li>
+            <li>Treasury Regulation 16A6.4 requires contracts and variations to be in writing.</li>
+            <li>National Treasury SCM Instruction 03 of 2021/22 on contract management.</li>
+          </ul>
+          <p><strong>Risk:</strong> VF cannot enforce payment for unapproved variations; irregular expenditure may be disallowed by the Auditor-General, resulting in unpaid invoices. Potential fraud allegations.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill disagree">High risk</span> Action 4 — Standardised luxury hospitality package with consolidated (opaque) pricing</summary>
+        <div class="inner">
+          <p><strong>Pillars breached:</strong> Value for Money; Open Competition.</p>
+          <p><strong>Legislative breaches:</strong></p>
+          <ul class="clean">
+            <li>Constitution s217.</li>
+            <li>Cost Containment Regulations, 2019 (GN 1081 of 14 October 2019) — restrictions on venues, entertainment and catering costs.</li>
+            <li>National Treasury Instruction Note on Cost Containment (2016, as updated).</li>
+          </ul>
+          <p><strong>Risk:</strong> Bid disqualification; inability to demonstrate market-related pricing per Treasury Regulation 16A6.3(a)(iii).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill disagree">High risk</span> Action 5 — Standardised extended payment terms to subcontractors (including SMMEs)</summary>
+        <div class="inner">
+          <p><strong>Pillars breached:</strong> Equity; Accountability.</p>
+          <p><strong>Legislative breaches:</strong></p>
+          <ul class="clean">
+            <li>PFMA s38(1)(f) and Treasury Regulation 8.2.3 — government must pay within 30 days (the intent cascades to suppliers).</li>
+            <li>Preferential Procurement Regulations, 2022 (published 4 November 2022) — SMME promotion.</li>
+            <li>Companies Act s22 — reckless trading if suppliers are used as a credit line.</li>
+          </ul>
+          <p><strong>Risk:</strong> Loss of B-BBEE ESD score; reputational harm; possible Competition Commission scrutiny for abuse of buyer power.</p>
+        </div>
+      </details>
+
+      <h3 id="tb-thresholds">Threshold rules — National Treasury PFMA SCM Instruction No. 02 of 2021/2022</h3>
+      <table>
+        <thead><tr><th>Value</th><th>Procurement method</th></tr></thead>
+        <tbody>
+          <tr><td>≤ R2 000</td><td>Petty cash</td></tr>
+          <tr><td>R2 001 – R50 000</td><td>Written/verbal quotes</td></tr>
+          <tr><td>R50 001 – R1 000 000</td><td>At least 3 written quotes from CSD-registered suppliers</td></tr>
+          <tr><td>&gt; R1 000 000</td><td>Competitive bid (tender)</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Preferential Procurement (PPPFA):</strong></p>
+      <ul class="clean">
+        <li>Contracts <strong>≤ R50m</strong> → <strong>80/20</strong> price/B-BBEE split</li>
+        <li>Contracts <strong>&gt; R50m</strong> → <strong>90/10</strong> price/B-BBEE split</li>
+      </ul>
+
+      <h3 id="tb-prereq">Prerequisites Villa Flawty must satisfy before bidding</h3>
+      <ol>
+        <li>Register on the <strong>National Treasury Central Supplier Database (CSD)</strong>.</li>
+        <li>Valid <strong>Tax Compliance Status PIN</strong> (Tax Administration Act s256).</li>
+        <li>Current <strong>B-BBEE certificate</strong> (higher levels score better).</li>
+        <li>CIPC registration and beneficial ownership disclosure up to date.</li>
+        <li><strong>FICA</strong> beneficial ownership and CDD compliance.</li>
+        <li>Declaration of interest (<strong>SBD 4</strong>) per Treasury Regulation 16A8.4 for any bid involving employees/officials related to directors.</li>
+      </ol>
+
+      <h3 id="tb-recommend">Constructive recommendations for the Board</h3>
+      <ul class="clean">
+        <li>Replace Action 1 with <strong>compliant market engagement</strong> — published RFIs, departmental industry days and open tender information sessions.</li>
+        <li>Remove all complimentary upgrades/gifts to officials. Offer uniform service levels.</li>
+        <li>Require <strong>written contract variations</strong> with approval trails.</li>
+        <li>Provide <strong>itemised, transparent pricing</strong> (per room, per delegate, per meal) enabling government to demonstrate VfM.</li>
+        <li>Align subcontractor payment cycles with VF's revenue cycle and <strong>pay SMMEs within 30 days</strong> — protecting B-BBEE ESD score and aligning with Treasury Regulation 8.2.3.</li>
+      </ul>
+    </section>
+
+    <!-- ===================== TASK C ===================== -->
+    <section id="task-c" class="card">
+      <h2>Task (c) — Strategic Options (Document C)</h2>
+
+      <h3 id="tc-opt1">Option 1 — Joint Venture with Silver Spoons</h3>
+      <details open>
+        <summary><span class="pill info">Structuring / Legal</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Legal form (partnership, joint operation, incorporated JV) — each has different Companies Act and IFRS 11 consequences. Incorporated JV is a separate entity.</li>
+            <li><strong>Companies Act s112</strong> — disposal of greater part of assets may require shareholder special resolution.</li>
+            <li><strong>Competition Act 89 of 1998, s11–12</strong> — merger notification if combined turnover/assets meet thresholds (R600m combined / R100m target).</li>
+            <li><strong>Income Tax</strong> — contribution of kitchen/equipment at no charge may trigger s8(4)(a) recoupment and CGT unless corporate-rule relief (s42/s44) applies.</li>
+            <li><strong>VAT Act s18</strong> — use of VF's kitchen for no consideration may trigger deemed supply / change-of-use adjustments.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill info">Operational / HR</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Head chef retrenchment — <strong>LRA s189/189A</strong> consultation obligations; severance under <strong>BCEA s41</strong> (1 week per year). Possible CCMA dispute.</li>
+            <li>Retention of other staff under Silver Spoons management may constitute a <strong>transfer of a going concern (s197 LRA)</strong> — automatic transfer on no-less-favourable terms.</li>
+            <li>Liquor Licence under Gauteng Liquor Act, 2003 — variation may be required if Silver Spoons becomes a "person having an interest".</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill info">Commercial / Financial</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Loss of 100% of F&amp;B EBITDA (2025: R1,77m); 50% share of JV profits dilutive unless Silver Spoons brand drives material uplift.</li>
+            <li>Facilitation fee to a related party — <strong>IAS 24</strong> disclosure and potential <strong>Companies Act s75</strong> personal financial interest.</li>
+            <li>Brand risk — F&amp;B under Silver Spoons brand disassociates from VF's "afro-chic luxury" identity.</li>
+            <li>Erosion of bundled hospitality offering (harder to sell conference + catering).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill info">Accounting (IFRS)</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Joint control assessment. Joint venture → <strong>equity method (IAS 28)</strong>. Joint operation → share of assets, liabilities, revenue, expense.</li>
+            <li>Removal of F&amp;B line items from VF income statement; reclassified as share of profit of JV.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3 id="tc-opt2">Option 2 — Internal Corporate Contracting Strategy</h3>
+
+      <details open>
+        <summary><span class="pill info">Operational</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>New dedicated account managers — fixed-cost increase.</li>
+            <li>CRM/systems investment for key account management.</li>
+            <li>Occupancy already 70% (11 680 × 70% ≈ 8 176 rooms sold) — limited weekday headroom and <strong>displacement</strong> risk of transient guests.</li>
+            <li>Upgrades / flexible booking = <strong>IFRS 15 variable consideration</strong>; constraint on revenue and possible deferred revenue for loyalty-type benefits (material rights).</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill info">Commercial</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Discounted rates reduce ARR (currently R2 950) — margin compression.</li>
+            <li>Customer concentration risk — dependency on few corporates (<strong>IFRS 9 ECL</strong> on receivables).</li>
+            <li>Minimum volume commitments expose VF to shortfall risk.</li>
+            <li>Economic-downturn sensitivity of corporate travel budgets.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="pill info">Strategic fit</span></summary>
+        <div class="inner">
+          <ul class="clean">
+            <li>Internally driven → lower execution risk, reversible if unsuccessful.</li>
+            <li>Retains full brand control and value chain — aligns with luxury positioning.</li>
+            <li>Does <strong>not address F&amp;B underperformance</strong> flagged in Document 5.</li>
+          </ul>
+        </div>
+      </details>
+
+      <h3 id="tc-info">Additional information required</h3>
+
+      <div class="two-col">
+        <div>
+          <h4>For Option 1</h4>
+          <ol>
+            <li>Draft JV agreement — governance, deadlock, profit-sharing, exit rights.</li>
+            <li>Silver Spoons' audited financials and JHB market brand data.</li>
+            <li>Identity of related party receiving the facilitation fee — s75 Companies Act and PRECCA screen.</li>
+            <li>Detailed retrenchment cost for head chef.</li>
+            <li>Pro-forma JV P&amp;L (base and sensitivity cases).</li>
+            <li>Transfer-pricing treatment of conference catering.</li>
+            <li>Tax opinion (s42/s44/s45, VAT, transfer pricing, recoupment).</li>
+            <li>Competition Commission threshold analysis.</li>
+            <li>Liquor Act licence variation procedure and timing.</li>
+            <li>B-BBEE scorecard impact — management control pillar.</li>
+            <li>IFRS 11 joint-control assessment and equity-method impact.</li>
+            <li>Bank-covenant restrictions on JVs or asset ring-fencing.</li>
+          </ol>
+        </div>
+        <div>
+          <h4>For Option 2</h4>
+          <ol>
+            <li>Financial projections (3-year P&amp;L, cashflow, sensitivity) — explicitly absent.</li>
+            <li>Current corporate client pipeline and win-rate assumptions.</li>
+            <li>Competitor benchmarking in Sandton.</li>
+            <li>Displacement analysis.</li>
+            <li>Discount depth ranges and break-even occupancy uplift.</li>
+            <li>Minimum booking volumes and contractual remedies.</li>
+            <li>Conference facility current utilisation.</li>
+            <li>Cost of establishing key-account-management function.</li>
+            <li>Impact on luxury brand positioning.</li>
+            <li>Credit-risk framework and receivables terms.</li>
+            <li>B-BBEE scorecard impact.</li>
+            <li>Exit flexibility and associated cost.</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3 id="tc-summary">Summary for the Board</h3>
+      <div class="callout info"><strong>Option 1</strong> is a <em>transformational</em>, higher-risk, externally dependent strategy that surrenders brand and operational control over F&amp;B in exchange for potential demand uplift, while introducing related-party, labour, tax and competition-law complexity.</div>
+      <div class="callout info"><strong>Option 2</strong> is an <em>incremental</em>, internally controlled strategy with lower execution risk but narrower upside, material displacement risk at already-high occupancy, and no formal projections.</div>
+      <div class="callout success">Neither option should be selected without the additional information listed. The options are <strong>not mutually exclusive</strong> — Option 2 could stabilise performance while Option 1 is fully scoped.</div>
+    </section>
+
+    <!-- ===================== REFERENCES ===================== -->
+    <section id="refs" class="card">
+      <h2>Key South African References Used</h2>
+      <div class="ref-grid">
+        <div class="ref-box">
+          <h5>Financial Reporting &amp; Tax</h5>
+          <ul>
+            <li>IFRS 2 — Share-based Payment (¶19–29, B43, B44; IG Example 2)</li>
+            <li>IAS 12 — Income Taxes (¶68A–68C)</li>
+            <li>IFRS 11; IAS 28; IFRS 15; IFRS 9</li>
+            <li>Income Tax Act 58 of 1962 — s11(a), s11(lA), s7B, s8(4)(a), s40C, s42–s45; Fourth Schedule (PAYE)</li>
+            <li>VAT Act 89 of 1991 — s18</li>
+            <li>Companies Act 71 of 2008 — s22, s41, s75, s112</li>
+            <li>King IV — conflicts of interest</li>
+          </ul>
+        </div>
+        <div class="ref-box">
+          <h5>Public Procurement (Task b)</h5>
+          <ul>
+            <li>Constitution of RSA, 1996 — s217</li>
+            <li>PFMA 1 of 1999 — s38, s51, s57</li>
+            <li>Treasury Regulations, 2005 — reg 16A</li>
+            <li>PPPFA 5 of 2000 &amp; Regulations 2022</li>
+            <li>National Treasury PFMA SCM Instruction No. 02 of 2021/22</li>
+            <li>PRECCA 12 of 2004 — s3, s4, s12, s13, s28, s34</li>
+            <li>B-BBEE Act 53 of 2003 and Codes of Good Practice</li>
+            <li>Cost Containment Regulations, 2019 (GN 1081)</li>
+            <li>Public Service Regulations 2016; DPSA Code of Conduct</li>
+          </ul>
+        </div>
+        <div class="ref-box">
+          <h5>Task (c) Additional</h5>
+          <ul>
+            <li>Labour Relations Act 66 of 1995 — s189, s189A, s197</li>
+            <li>Basic Conditions of Employment Act 75 of 1997 — s41</li>
+            <li>Competition Act 89 of 1998 — s11, s12</li>
+            <li>Gauteng Liquor Act 2 of 2003</li>
+            <li>FICA — beneficial ownership and CDD</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Tatum APC Prep — prepared for APC December 2025 preparation. Clairmont Capital (Pty) Ltd is a fictitious scenario set by SAICA.<br/>
+  &copy; 2026 — Cameron Dean-Shekleton. For educational use only.
+</footer>
+
+<script>
+function toggleAll(open){
+  document.querySelectorAll('details').forEach(d => d.open = open);
+}
+function showTab(e, id){
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-buttons button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  e.currentTarget.classList.add('active');
+}
+// Highlight active TOC link on scroll
+const sections = document.querySelectorAll('section[id], h3[id]');
+const links = document.querySelectorAll('nav.toc a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < 120) current = sec.id;
+  });
+  links.forEach(l => {
+    l.style.background = '';
+    l.style.borderLeftColor = 'transparent';
+    if(l.getAttribute('href') === '#'+current){
+      l.style.background = 'var(--soft)';
+      l.style.borderLeftColor = 'var(--accent)';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
